@@ -5,14 +5,17 @@
     <label>Username</label>
     <input formControlName="username"/>
   </div>
+  {{authForm.get('username').errors | json}} <!--this is used to debug the errors that are thrown when the user input is not valid  -->
   <div class="field">
     <label>Password</label>
     <input formControlName="password"/>
   </div>
+  {{authForm.get('password').errors | json}}
   <div class="field">
     <label>Password Confirmation</label>
     <input formControlName="passwordConfirmation"/>
   </div>
+  {{authForm.get('passwordConfirmation').errors | json}}
 
   <button class="ui submit button primary">
     Submit
