@@ -1,4 +1,7 @@
-<form>
-  <input>
+<h3>Create a new account</h3>
 
+<form [formGroup]="authForm">
+  <input formControlName="username" />
+  <input formControlName="password" />
+  <input formControlName="passwordConfirmation" />
 </form>
