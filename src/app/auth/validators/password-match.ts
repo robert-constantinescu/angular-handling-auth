@@ -1,7 +1,9 @@
 import {AbstractControl, ValidationErrors, Validator} from '@angular/forms';
+import {Injectable} from '@angular/core';
 
 
 // implementing the Validator interface is an OPTIONAL step
+@Injectable({ providedIn: 'root' })
 export class PasswordMatch implements Validator {
 
   // here we can also expect a FormGroup or FormControl,
