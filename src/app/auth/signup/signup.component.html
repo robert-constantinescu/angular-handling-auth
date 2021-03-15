@@ -1,11 +1,14 @@
 <h3>Create a new account</h3>
 
 <form [formGroup]="authForm" class="ui form">
-  <div class="field">
-    <label>Username</label>
-    <input formControlName="username"/>
-  </div>
+<!--  <div class="field">-->
+<!--    <label>Username</label>-->
+<!--    <input formControlName="username"/>-->
+<!--  </div>-->
+
+  <app-input label="Username" [control]="authForm.get('username')"></app-input>
   {{authForm.get('username').errors | json}} <!--this is used to debug the errors that are thrown when the user input is not valid  -->
+
   <div class="field">
     <label>Password</label>
     <input formControlName="password"/>
