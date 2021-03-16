@@ -13,6 +13,7 @@ export class InputComponent implements OnInit {
   // <app-input label="Username" [control]="authForm.get('username')"></app-input>
   @Input() label: string;
   @Input() control: FormControl;
+  @Input() inputType: string;
 
 
   constructor() { }

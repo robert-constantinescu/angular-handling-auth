@@ -22,7 +22,7 @@ export class UniqueUsername implements AsyncValidator{
     return this.authService.usernameAvailable(value)
       .pipe(
         map((response) => {
-          console.log(response);
+          // console.log(response);
           if (response.available) {
             return null;
           }
