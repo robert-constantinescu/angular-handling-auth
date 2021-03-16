@@ -23,7 +23,7 @@
     If you get rid off the ! and change the unique-username.ts validator to return true when the username is NOT available
     It will work as expected, but for some reason the negation mess up with it
     -->
-    <p *ngIf="!control.errors.isUniqueUsername">
+    <p *ngIf="!control.errors.isUniqueUsername && control.errors.isUniqueUsername != null">
       Username is already taken
     </p>
   </div>
