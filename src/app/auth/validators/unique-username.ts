@@ -35,7 +35,6 @@ export class UniqueUsername implements AsyncValidator{
           } else {
             return of({error: err.error, statusCode: err.status});
           }
-
         })
       );
   };
