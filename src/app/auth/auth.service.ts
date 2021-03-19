@@ -19,9 +19,9 @@ export class AuthService {
 
   signup(formValues: SignupForm) {
     return this.http
-      .post<any>(
+      .post<SignupResponse>(
         `${this.baseUrl}/auth/signup`,
-        {formValues}
+        formValues
         );
   }
 
@@ -35,4 +35,8 @@ interface SignupForm {
   username: string;
   password: string;
   passwordConfirmation: string;
+}
+
+interface SignupResponse {
+  username: string;
 }
