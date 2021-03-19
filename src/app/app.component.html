@@ -2,7 +2,11 @@
   <div class="ui secondary pointing menu">
     <a routerLink="/" class="item">Angular Email</a>
     <div class="right menu">
-      <ng-container *ngIf="signedin">
+<!--
+The async pipe will allow us to have a reference directly to a Promise or an Observable.
+Any time the Observable/Promise emits or resolve a value the async is going to take the value and use it to update our template
+-->
+      <ng-container *ngIf="signedin$ | async">
         <a class="ui item" routerLink="/inbox" routerLinkActive="active">
           Inbox
         </a>
@@ -10,7 +14,7 @@
           Sign Out
         </a>
       </ng-container>
-      <ng-container *ngIf="!signedin">
+      <ng-container *ngIf="!(signedin$ | async)">
         <a class="ui item" routerLink="/" routerLinkActive="active">
           Sign In
         </a>
