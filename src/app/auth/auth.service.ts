@@ -29,7 +29,10 @@ export class AuthService {
     return this.http
       .post<SignupResponse>(
         `${this.baseUrl}/auth/signup`,
-        formValues
+        formValues,
+        // by default the HTTP Client will ignore any cookies received unless we add the below `withCredentials` parameter
+        // e.g: Authentication cookies
+    {withCredentials: true}
       ).pipe(
         // an error coming out of the http observable is going to skip the tap() operator
         // which is what we want, because an error from http observable means that we are probably not signed in
@@ -39,8 +42,15 @@ export class AuthService {
       );
   }
 
-  signin() {
 
+  checkAuthStatus() {
+    return this.http
+      .get<any>(`${this.baseUrl}/auth/signedin`, {withCredentials: true})
+      .pipe(
+        tap((resp) => {
+          console.log(resp);
+        })
+      );
   }
 
   signout() {
