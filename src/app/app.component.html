@@ -15,7 +15,8 @@ Any time the Observable/Promise emits or resolve a value the async is going to t
         </a>
       </ng-container>
       <ng-container *ngIf="!(signedin$ | async)">
-        <a class="ui item" routerLink="/" routerLinkActive="active">
+<!--        The exact: true => tells angular to only take into consideration the exact match of the routerLink-->
+        <a class="ui item" routerLink="/" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
           Sign In
         </a>
         <a class="ui item" routerLink="/signup" routerLinkActive="active">
