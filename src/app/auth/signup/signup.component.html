@@ -29,6 +29,9 @@
     <p *ngIf="authForm.errors.noConnection">
       No internet connection
     </p>
+    <p *ngIf="authForm.errors.unknownError">
+      An unknown error occurred. Sign up has failed.
+    </p>
   </div>
 
   <div>
