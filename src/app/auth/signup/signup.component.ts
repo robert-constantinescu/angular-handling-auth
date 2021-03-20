@@ -4,6 +4,7 @@ import {PasswordMatch} from '../validators/password-match';
 import {UniqueUsername} from '../validators/unique-username';
 import {AuthService} from '../auth.service';
 import {catchError} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -39,7 +40,8 @@ export class SignupComponent implements OnInit {
 
   constructor(private passwordMatch: PasswordMatch,
               private uniqueUsernameValidator: UniqueUsername,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -63,6 +65,7 @@ export class SignupComponent implements OnInit {
       next: (response) => {
         console.log(this);
         // navigate to some other route
+        this.router.navigateByUrl('/inbox');
       },
       complete: () => {
         // we are not doing anything with complete,  but i'm just letting it here for future references to remember that it exists

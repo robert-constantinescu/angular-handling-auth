@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -24,7 +25,8 @@ export class SigninComponent implements OnInit {
     ])
   });
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -37,7 +39,9 @@ export class SigninComponent implements OnInit {
       // always REMEMBER TO SUBSCRIBE TO OBSERVABLES so that they will emit values
       this.authService.signin(this.signinForm.value).subscribe(
         {
-          next: response => { },
+          next: () => {
+            this.router.navigateByUrl('/inbox');
+          },
           error: ({error}) => {
             console.log(error);
             if (error.username || error.password) {
