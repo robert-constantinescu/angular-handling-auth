@@ -45,10 +45,13 @@ export class AuthService {
 
   checkAuthStatus() {
     return this.http
-      .get<any>(`${this.baseUrl}/auth/signedin`)
+      .get<SignedinResponse>(`${this.baseUrl}/auth/signedin`)
       .pipe(
         tap((resp) => {
           console.log(resp);
+          if ( resp.authenticated === true ) {
+            this.signedin$.next(true);
+          }
         })
       );
   }
@@ -70,5 +73,10 @@ interface SignupForm {
 }
 
 interface SignupResponse {
+  username: string;
+}
+
+interface SignedinResponse {
+  authenticated: boolean;
   username: string;
 }
