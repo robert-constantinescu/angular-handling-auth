@@ -34,7 +34,7 @@ export class AuthService {
         // e.g: Authentication cookies
     // {withCredentials: true} i have added this in an interceptor, but i'm letting it here for future references
       ).pipe(
-        // an error coming out of the http observable is going to skip the tap() operator
+        // an error coming out of the http observable IS GOING TO SKIP the tap() operator
         // which is what we want, because an error from http observable means that we are probably not signed in
         tap(() => {
           this.signedin$.next(true);
@@ -65,6 +65,17 @@ export class AuthService {
       );
   }
 
+  signin(signinFormValues: SigninForm) {
+    console.log('SIGNING IN: ', signinFormValues);
+    return this.http.post(`${this.baseUrl}/auth/signin`, signinFormValues)
+      .pipe(
+      // an error coming out of the http observable IS GOING TO SKIP the tap() operator
+      tap(() => {
+        console.log('SIGNED IN');
+        this.signedin$.next(true);
+      })
+    );
+  }
 }
 
 interface UsernameResponse {
@@ -84,4 +95,9 @@ interface SignupResponse {
 interface SignedinResponse {
   authenticated: boolean;
   username: string;
+}
+
+interface SigninForm {
+  username: string;
+  password: string;
 }

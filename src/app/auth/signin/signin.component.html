@@ -1,1 +1,11 @@
-<p>signin works!</p>
+<h3>Sign In</h3>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="signinForm" class="ui form">
+
+  <app-input inputType="text" label="Username" [control]="signinForm.get('username')"> </app-input>
+  <app-input inputType="password" label="Password" [control]="signinForm.get('password')"></app-input>
+
+  <button class="ui submit button primary">
+    Submit
+  </button>
+</form>
