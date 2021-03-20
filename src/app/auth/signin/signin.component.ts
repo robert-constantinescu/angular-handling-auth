@@ -35,7 +35,17 @@ export class SigninComponent implements OnInit {
     } else {
       console.log('ELSE: ', this.signinForm.value);
       // always REMEMBER TO SUBSCRIBE TO OBSERVABLES so that they will emit values
-      this.authService.signin(this.signinForm.value).subscribe(() => {});
+      this.authService.signin(this.signinForm.value).subscribe(
+        {
+          next: response => { },
+          error: ({error}) => {
+            console.log(error);
+            if (error.username || error.password) {
+              this.signinForm.setErrors({credentials: true});
+            }
+          }
+        }
+      );
     }
 
   }
