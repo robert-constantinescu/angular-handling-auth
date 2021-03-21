@@ -10,7 +10,7 @@ export class AuthService {
   // a BehaviorSubject(defaultValue) will emit the default value to any late subscriber
   // if the .next(anotherValue) method will be called on the BehaviorSubject, all current subscribers and future
   // will receive the last value emitted by the next() method. In this case `anotherValue`
-  signedin$ = new BehaviorSubject(false);
+  signedin$ = new BehaviorSubject(null);
 
   private baseUrl = 'https://api.angular-email.com';
 
@@ -44,11 +44,12 @@ export class AuthService {
 
 
   checkAuthStatus() {
+    console.log('checkAuthStatus()');
     return this.http
       .get<SignedinResponse>(`${this.baseUrl}/auth/signedin`)
       .pipe(
         tap((resp) => {
-          console.log(resp);
+          console.log('checkAuthStatus()', resp);
           if ( resp.authenticated === true ) {
             this.signedin$.next(true);
           }

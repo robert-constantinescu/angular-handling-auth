@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('app.component -ngOnInit');
     this.authService.checkAuthStatus().subscribe(() => {});
   }
 
