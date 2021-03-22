@@ -1,9 +1,13 @@
 <div class="ui celled list">
   <div class="item" *ngFor="let email of emails">
-<!--    routerLink is giving you a path relative to the path you are at
-        the path for the below would be `/inbox/id', because we are on the '/inbox' when we see the list of emails
+<!--    routerLink:
+            is giving you a path relative to the path you are at
+            the path for the below would be `/inbox/id', because we are on the '/inbox' when we see the list of emails
+
+        routerLinkActive:
+            whatever you put for this property will be applied as a CLASS to the anchor element whenever the element will be selected
 -->
-    <a [routerLink]="email.id">
+    <a [routerLink]="email.id" routerLinkActive="active">
       <div class="content">
         <div class="header">
           {{ email.subject }}

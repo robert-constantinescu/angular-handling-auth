@@ -1,0 +1,17 @@
+.item a {
+  color: black;
+}
+
+/*find any '<a>'(anchor) element that has the class 'active' applied to it*/
+a.active {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* add something 'before' the <a> element. In this case we add the '>' when we select the element, which means when the <a> is having the 'active' class applied*/
+a.active:before {
+  content: '>';
+  font-size: 20px;
+  margin-right: 10px;
+}
