@@ -4,6 +4,7 @@ import {HomeComponent} from './home/home.component';
 import {PlaceholderComponent} from './placeholder/placeholder.component';
 import {EmailShowComponent} from './email-show/email-show.component';
 import {EmailResolverService} from './email-resolver.service';
+import {NotFoundComponent} from './not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,14 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    /**
+     * These children will be loaded in the router-outlet of the HomeComponent.html
+     */
     children: [
+      {
+        path: 'not-found',
+        component: NotFoundComponent
+      },
       {
         path: ':id',
         component: EmailShowComponent,
