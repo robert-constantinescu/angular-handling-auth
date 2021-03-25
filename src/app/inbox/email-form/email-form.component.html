@@ -1,1 +1,16 @@
-<p>email-form works!</p>
+<form [formGroup]="createEmailForm" class="ui form">
+  <app-input inputType="email" label="To" [control]="createEmailForm.get('to')">
+  </app-input>
+
+  <app-input inputType="email" label="From" [control]="createEmailForm.get('from')">
+  </app-input>
+
+  <app-input inputType="text" label="Subject" [control]="createEmailForm.get('subject')">
+  </app-input>
+
+  <app-input inputType="text" label="Text" [control]="createEmailForm.get('text')">
+  </app-input>
+
+  <button class="ui button primary">SEND</button>
+
+</form>
