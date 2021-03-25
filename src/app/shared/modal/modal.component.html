@@ -1,4 +1,8 @@
 <div (click)="onDismissClick()" class="ui dimmer visible active">
+<!--
+The next div represents the body of the modal, basically when we click the body,
+we don't want the click to propagate above and trigger the (click) event to execute the onDismissClick() and close the modal
+-->
   <div (click)="$event.stopPropagation()" class="ui modal visible active">
     <i class="close icon" (click)="onDismissClick()"></i>
     <div class="header">

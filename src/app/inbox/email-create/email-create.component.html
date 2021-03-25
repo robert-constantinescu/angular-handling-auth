@@ -1,1 +1,19 @@
-<p>email-create works!</p>
+<button (click)="showModal = true" class="ui button inverted primary fluid">
+  Compose
+</button>
+
+
+<app-modal (dismiss)="showModal = false" *ngIf="showModal">
+  <!--  this will replace the <ng-content select="[modalTitle]"></ng-content> from the app-modal html tempalte -->
+  <div modalTitle>Compose</div>
+
+  <!--
+    the default <ng-content> from the modal component html file
+  this will replace the <ng-content></ng-content> -->
+  <app-email-form></app-email-form>
+
+  <!--  this will replace the <ng-content select="[modalFooter]"></ng-content>-->
+  <div modalFooter>
+    <button class="ui primary button">Custom Button</button>
+  </div>
+</app-modal>
