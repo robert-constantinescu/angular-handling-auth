@@ -11,6 +11,7 @@ export class AuthService {
   // if the .next(anotherValue) method will be called on the BehaviorSubject, all current subscribers and future
   // will receive the last value emitted by the next() method. In this case `anotherValue`
   signedin$ = new BehaviorSubject(null);
+  username = '';
 
   private baseUrl = 'https://api.angular-email.com';
 
@@ -36,8 +37,9 @@ export class AuthService {
       ).pipe(
         // an error coming out of the http observable IS GOING TO SKIP the tap() operator
         // which is what we want, because an error from http observable means that we are probably not signed in
-        tap(() => {
+        tap((response) => {
           this.signedin$.next(true);
+          this.username = response.username;
         })
       );
   }
@@ -48,10 +50,11 @@ export class AuthService {
     return this.http
       .get<SignedinResponse>(`${this.baseUrl}/auth/signedin`)
       .pipe(
-        tap((resp) => {
-          console.log('checkAuthStatus()', resp);
-          if ( resp.authenticated === true ) {
+        tap((response) => {
+          console.log('checkAuthStatus()', response);
+          if ( response.authenticated === true ) {
             this.signedin$.next(true);
+            this.username = response.username;
           }
         })
       );
@@ -68,12 +71,13 @@ export class AuthService {
 
   signin(signinFormValues: SigninForm) {
     console.log('SIGNING IN: ', signinFormValues);
-    return this.http.post(`${this.baseUrl}/auth/signin`, signinFormValues)
+    return this.http.post<SignedinResponse>(`${this.baseUrl}/auth/signin`, signinFormValues)
       .pipe(
       // an error coming out of the http observable IS GOING TO SKIP the tap() operator
-      tap(() => {
+      tap((response) => {
         console.log('SIGNED IN');
         this.signedin$.next(true);
+        this.username = response.username;
       })
     );
   }
